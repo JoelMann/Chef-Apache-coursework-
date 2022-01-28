@@ -2,7 +2,7 @@ package 'httpd' do
     action :install
 end
 
-file '/var/www/index.html' do
+file '/var/www/html/index.html' do
     action :create
     content '<html><h1>Hello, world!</h1></html>'
 end
