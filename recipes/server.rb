@@ -2,7 +2,7 @@ package 'httpd' do
     action :install
 end
 
-template '/var/www/html/' do
+template '/var/www/html/index.html' do
     source 'index.html.erb'
     action :create
 end
