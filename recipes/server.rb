@@ -1,9 +1,15 @@
+# notifies :action, 'resource[name'], :timer
+# subscribes :action, 'resource[name'], :timer
+
+# timers - :before, :delayed, :immediately
+
 package 'httpd' do
     action :install
 end
 
 template '/var/www/html/index.html' do
     source 'index.html.erb'
+    notifies :restart, 'service[httpd]', :immediately
     action :create
 end
 
@@ -37,13 +43,14 @@ end
 # end
 
 #For our purposes, it's better to do this - this will test/fix/bring into management config.
-directory '/var/www/mysites' do
-    owner 'apache'
-    group 'apache'
-    recursive true
-    mode '0755'
-    action :create
-end
+# directory '/var/www/mysites' do
+#     owner 'apache'
+#     group 'apache'
+#     recursive true
+#     mode '0755'
+#     action :create
+# end
+
 
 
 service 'httpd' do
